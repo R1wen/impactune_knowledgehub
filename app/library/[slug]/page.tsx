@@ -99,8 +99,8 @@ const ArticlePage = async ({ params }: ArticlePageProps) => {
           </div>
           
           {/* Métadonnées (Inspiré par votre image) */}
-          <div className="text-sm space-y-1 p-4 bg-gray-50 rounded-md border border-gray-200">
-            <h3 className="font-bold text-gray-700 mb-2">Informations Clés</h3>
+          <div className="text-sm space-y-1 p-4 bg-gray-50 rounded-md border border-gray-200 text-black">
+            <h3 className="font-bold  mb-2">Informations Clés</h3>
             <p><span className="font-medium">Type de Document:</span> {document.title.includes('Tutoriel') ? 'Guide Pratique' : 'Rapport Stratégique'}</p>
             <p><span className="font-medium">Thème:</span> Diffusion Interactive, {document.title.includes('Statistiques') ? 'Analyse de Données' : 'Communication'}</p>
             <p><span className="font-medium">Date de Publication:</span> {document.date}</p>
