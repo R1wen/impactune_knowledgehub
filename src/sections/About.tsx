@@ -16,20 +16,21 @@ const AboutSection: React.FC<AboutSectionProps> = ({
         src={imagePath}
         alt="Background Image"
         fill
+        sizes="100vw"
         className="object-cover"
         priority
       />
       {/* Overlay sombre pour améliorer la lisibilité du texte blanc */}
-      <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center text-center p-8">
+      <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-8">
         
         {/* Titre Principal */}
-        <h1 className="text-white text-3xl sm:text-4xl md:text-5xl font-bold max-w-2xl bg-black bg-opacity-50 p-3 mb-4">
-          Bienvenu sur le Knowledge Hub de l'ADEA
+        <h1 className="text-white text-3xl sm:text-4xl md:text-5xl font-bold max-w-2xl bg-gray-800/50 rounded-2xl p-3 mb-4">
+          Bienvenu sur le Knowledge Hub d'ImpacTune
         </h1>
 
         {/* Sous-titre */}
-        <p className="text-white text-lg sm:text-xl max-w-xl bg-black bg-opacity-50 p-2">
-          Votre portail unique sur l'éducation et les compétences en Afrique
+        <p className="text-white text-lg sm:text-xl max-w-xl bg-gray-800/50 rounded-2xl p-2">
+          La diffusion numérique simplifiée. Rendez votre contenu visible et interactif grâce à une interface intuitive et des fonctionnalités temps réel
         </p>
       </div>
     </div>
@@ -38,7 +39,6 @@ const AboutSection: React.FC<AboutSectionProps> = ({
   // --- 2. Section d'Introduction (Texte et Bouton) ---
   const IntroContent = (
     <div className="relative bg-white pt-16 pb-20 overflow-hidden">
-      {/* Motif géométrique en fond comme sur l'image (simulé) */}
       <div 
         className="absolute inset-0 z-0 opacity-20" 
         style={{ 
@@ -49,9 +49,8 @@ const AboutSection: React.FC<AboutSectionProps> = ({
       
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         
-        {/* Texte d'Introduction */}
         <p className="text-gray-700 text-lg leading-relaxed mb-8">
-          Le Knowledge Hub offre une gamme de **services** et une multitude de **ressources**, que nous avons **produites** et **sélectionnées** pour vous. Que vous soyez un décideur politique, un praticien, un éducateur, un chercheur ou toute personne intéressée par l'éducation et la formation en Afrique, vous pouvez accéder gratuitement au **Knowledge Hub**.
+          ImpacTune offre une gamme de fonctionnalités innovantes et une multitude de solutions de diffusion, que nous avons conçues et optimisées pour vous. Que vous soyez un créateur de contenu, un formateur, une organisation cherchant de la visibilité, un communicateur ou toute personne souhaitant rendre sa diffusion interactive, vous pouvez utiliser facilement ImpacTune.
         </p>
 
         {/* Bouton d'Action */}
