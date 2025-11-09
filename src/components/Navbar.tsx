@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 const navLinks = [
   { name: 'À propos', href: '/about' },
-  { name: 'Bibliothèque', href: '/librairy' },
+  { name: 'Bibliothèque', href: '/library' },
   { name: 'Dashboards', href: '/dashboards' },
 ];
 
