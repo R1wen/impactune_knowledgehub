@@ -55,7 +55,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({
 
         {/* Bouton d'Action */}
         <Link 
-          href="/a-propos" // Ajustez le lien vers la page "En savoir plus"
+          href="/about"
           className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-green-700 hover:bg-green-800 transition duration-150 ease-in-out"
         >
           En savoir plus sur le Knowledge Hub

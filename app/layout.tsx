@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "IT Knowledge Hub",
+  title: "Accueil | IT Knowledge Hub",
   description: "The Knowledge Hub of ImpacTune",
 };
 

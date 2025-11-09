@@ -1,9 +1,9 @@
 import Link from 'next/link';
 
 const navLinks = [
-  { name: 'À propos', href: '/a-propos' },
+  { name: 'À propos', href: '/about' },
+  { name: 'Bibliothèque', href: '/librairy' },
   { name: 'Dashboards', href: '/dashboards' },
-  { name: 'Bibliothèque', href: '/bibliotheque' },
 ];
 
 const Navbar = () => {
