@@ -56,7 +56,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({
         {/* Bouton d'Action */}
         <Link 
           href="/about"
-          className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-green-700 hover:bg-green-800 transition duration-150 ease-in-out"
+          className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-950 hover:bg-blue-800 transition duration-150 ease-in-out"
         >
           En savoir plus sur le Knowledge Hub
         </Link>

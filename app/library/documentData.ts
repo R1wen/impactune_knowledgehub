@@ -31,4 +31,34 @@ export const documentsData: DocumentData[] = [
     date: 'Septembre 2025',
     cardLink: '/library/vod',
   },
+  {
+    title: "Le Secret des Meilleurs Interviews : Techniques de Cadre et d'Éclairage pour un rendu professionnel",
+    imageSrc: '/images/interview_tech.jpg',
+    date: 'Novembre 2025',
+    cardLink: '/library/interview_techniques',
+  },
+  {
+    title: 'Au-delà du 16:9 : Explorer les formats verticaux et carrés pour les plateformes sociales',
+    imageSrc: '/images/vertical_formats.jpg',
+    date: 'Octobre 2025',
+    cardLink: '/library/vertical_formats',
+  },
+  {
+    title: "L'Art du Sound Design : Améliorer l'immersion de votre production sans équipement coûteux",
+    imageSrc: '/images/sound_design_tips.jpg',
+    date: 'Septembre 2025',
+    cardLink: '/library/sound_design_tips',
+  },
+  {
+    title: 'La 4K est-elle nécessaire ? Un guide pour choisir la bonne résolution de capture pour votre projet',
+    imageSrc: '/images/resolution_guide.jpg',
+    date: 'Septembre 2025',
+    cardLink: '/library/resolution_guide',
+  },
+  {
+    title: 'Les Bases de la Post-Production : Un flux de travail efficace de la dérushage à l\'exportation finale',
+    imageSrc: '/images/post_production_basics.jpg',
+    date: 'Août 2025',
+    cardLink: '/library/post_production_basics',
+  } 
 ];

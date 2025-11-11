@@ -3,7 +3,7 @@ import Link from 'next/link';
 const navLinks = [
   { name: 'À propos', href: '/about' },
   { name: 'Bibliothèque', href: '/library' },
-  { name: 'Dashboards', href: '/dashboards' },
+  // { name: 'Dashboards', href: '/dashboards' },
 ];
 
 const Navbar = () => {
@@ -17,11 +17,11 @@ const Navbar = () => {
             {/* Remplacer par votre logo réel */}
             <div className="text-4xl font-extrabold text-black">
               <span className="text-black">I</span>
-              <span className="text-amber-950">T</span>
+              <span className="text-blue-950">T</span>
             </div>
             <div className="flex flex-col text-sm leading-none">
-              <span className="font-bold text-gray-700">Impact</span>
-              <span className="font-bold text-amber-950">Tune</span>
+              <span className="font-bold text-black">Impact</span>
+              <span className="font-bold text-blue-950">Tune</span>
             </div>
           </div>
 
@@ -48,7 +48,7 @@ const Navbar = () => {
       </nav>
       
       {/* Barre rouge en bas (Style de l'image) */}
-      <div className="w-full h-2 bg-amber-800" />
+      <div className="w-full h-2 bg-blue-950" />
     </header>
   );
 };

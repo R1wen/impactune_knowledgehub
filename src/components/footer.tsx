@@ -72,7 +72,7 @@ const Footer: React.FC = () => {
 
             {/* Colonne 3: Formulaire de Contact */}
             <div className="flex flex-col">
-              <div className="bg-green-600 text-white font-bold text-lg p-3 text-center mb-4">
+              <div className="bg-blue-950 text-white font-bold text-lg p-3 text-center mb-4">
                 Contactez-nous
               </div>
 

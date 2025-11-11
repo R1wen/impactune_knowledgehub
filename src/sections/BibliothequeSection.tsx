@@ -33,7 +33,7 @@ const BibliothequeSection: React.FC = () => {
 
         <Link 
           href="/library"
-          className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-green-700 hover:bg-green-800 transition duration-150 ease-in-out"
+          className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-950 hover:bg-blue-800 transition duration-150 ease-in-out"
         >
           En savoir plus
         </Link>
