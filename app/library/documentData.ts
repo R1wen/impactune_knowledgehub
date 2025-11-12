@@ -83,7 +83,7 @@ export const documentsData: DocumentData[] = [
   },
   {
     title: 'Orchestration Centralisée : Gérer plusieurs plateformes de streaming simultanément',
-    imageSrc: '/images/vod.jpg',
+    imageSrc: '/images/orchestration.jpeg',
     date: 'Décembre 2025',
     cardLink: '/library/orchestration',
     category: 'Configuration',
@@ -91,7 +91,7 @@ export const documentsData: DocumentData[] = [
   },
   {
     title: 'Maximiser votre ROI : Analyse des statistiques post-streaming avec ImpacTune',
-    imageSrc: '/images/data_driven.jpg',
+    imageSrc: '/images/roi_analysis.jpeg',
     date: 'Décembre 2025',
     cardLink: '/library/roi_analysis',
     category: 'Statistiques',
@@ -99,7 +99,7 @@ export const documentsData: DocumentData[] = [
   },
   {
     title: 'Streaming Multi-plateforme : Diffuser sur YouTube, Facebook et Twitch en même temps',
-    imageSrc: '/images/vertical_formats.jpg',
+    imageSrc: '/images/vertical_formats.jpeg',
     date: 'Janvier 2026',
     cardLink: '/library/multiplatform',
     category: 'Configuration',
@@ -115,7 +115,7 @@ export const documentsData: DocumentData[] = [
   },
   {
     title: 'Intégration API : Connecter ImpacTune à vos outils existants',
-    imageSrc: '/images/data_driven.jpg',
+    imageSrc: '/images/api_integration.jpeg',
     date: 'Janvier 2026',
     cardLink: '/library/api_integration',
     category: 'Configuration',
@@ -123,7 +123,7 @@ export const documentsData: DocumentData[] = [
   },
   {
     title: 'Monétisation du Streaming : Stratégies pour générer des revenus avec votre contenu',
-    imageSrc: '/images/vod.jpg',
+    imageSrc: '/images/monetizatio.jpeg',
     date: 'Décembre 2025',
     cardLink: '/library/monetization',
     category: 'Statistiques',
