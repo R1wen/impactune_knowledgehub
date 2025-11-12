@@ -1,13 +1,13 @@
-import Image from "next/image";
-import About from "@/src/sections/About";
+import HeroSection from "@/src/sections/HeroSection";
+import FeaturesSection from "@/src/sections/FeaturesSection";
 import BibliothequeSection from "@/src/sections/BibliothequeSection";
-
 
 export default function Home() {
   return (
     <div>
-      <About/>
-      <BibliothequeSection/>
+      <HeroSection />
+      <FeaturesSection />
+      <BibliothequeSection />
     </div>
   );
 }
