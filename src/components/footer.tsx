@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
             {/* Colonne 1: Adresse et Contact */}
             <div className="flex flex-col">
               {/* Titre "Adresse" */}
-              <div className="bg-red-600 text-white font-bold text-lg p-3 text-center mb-4">
+              <div className="gradient-impactune text-white font-bold text-lg p-3 text-center mb-4 rounded-t-lg">
                 Adresse
               </div>
               
@@ -48,7 +48,7 @@ const Footer: React.FC = () => {
 
             {/* Colonne 2: Suivez-nous (Follow us) */}
             <div className="flex flex-col">
-              <div className="bg-yellow-600 text-white font-bold text-lg p-3 text-center mb-4">
+              <div className="gradient-impactune text-white font-bold text-lg p-3 text-center mb-4 rounded-t-lg">
                 Follow us
               </div>
               
@@ -72,7 +72,7 @@ const Footer: React.FC = () => {
 
             {/* Colonne 3: Formulaire de Contact */}
             <div className="flex flex-col">
-              <div className="bg-blue-950 text-white font-bold text-lg p-3 text-center mb-4">
+              <div className="gradient-impactune text-white font-bold text-lg p-3 text-center mb-4 rounded-t-lg">
                 Contactez-nous
               </div>
 
@@ -105,7 +105,7 @@ const Footer: React.FC = () => {
                 <div className="flex justify-end">
                   <button
                     type="submit"
-                    className="border border-white text-white py-2 px-6 hover:bg-white hover:text-gray-800 transition duration-200"
+                    className="gradient-impactune text-white py-2 px-6 rounded-lg font-semibold hover:opacity-90 transition-all duration-200 shadow-lg transform hover:scale-105"
                   >
                     ENVOYER
                   </button>

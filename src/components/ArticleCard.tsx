@@ -14,13 +14,9 @@ const DocumentCard: React.FC<DocumentCardProps> = ({
   date,
   cardLink,
 }) => {
-  // Le wrapper principal peut être un lien si cardLink est fourni, sinon une div.
-  const Wrapper = cardLink ? "a" : "div";
-  const WrapperProps = cardLink ? { href: cardLink } : {};
-
-  return (
-    <div className="max-w-sm mx-auto shadow-lg rounded-lg overflow-hidden bg-white group hover:shadow-xl transition duration-300 ease-in-out">
-      <div className="p-4 bg-amber-50 rounded-t-lg">
+  const content = (
+    <>
+      <div className="p-4 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 rounded-t-xl">
         <div className="flex justify-center">
           <div className="w-full max-w-[250px] aspect-2/3 relative">
             <Image
@@ -28,7 +24,7 @@ const DocumentCard: React.FC<DocumentCardProps> = ({
               alt={`Couverture du document: ${title}`}
               fill
               style={{ objectFit: "contain" }}
-              className="rounded-md"
+              className="rounded-lg group-hover:scale-105 transition-transform duration-300"
               priority
             />
           </div>
@@ -36,14 +32,28 @@ const DocumentCard: React.FC<DocumentCardProps> = ({
       </div>
 
       <div className="p-6">
-        <Wrapper
-          {...WrapperProps}
-          className="text-lg md:text-xl font-semibold leading-snug mb-3 text-blue-700 group-hover:text-red-600 transition duration-150 ease-in-out"
-        >
+        <h3 className="text-lg md:text-xl font-bold leading-snug mb-3 gradient-impactune-text group-hover:opacity-80 transition-all duration-200">
           {title}
-        </Wrapper>
-        <p className="text-gray-600 mt-5">{date}</p>
+        </h3>
+        <div className="flex items-center justify-between mt-4 pt-4 border-t border-gray-100">
+          <p className="text-sm text-gray-600 font-medium">{date}</p>
+          <svg className="w-5 h-5 text-gray-400 group-hover:text-blue-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </div>
       </div>
+    </>
+  );
+
+  return (
+    <div className="max-w-sm mx-auto shadow-lg rounded-xl overflow-hidden bg-white group hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-2 border border-gray-100">
+      {cardLink ? (
+        <Link href={cardLink} className="block">
+          {content}
+        </Link>
+      ) : (
+        content
+      )}
     </div>
   );
 };
