@@ -1,5 +1,8 @@
+"use client"
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+import { useTheme } from '@/src/contexts/ThemeContext';
 
 const socialLinks = [
   { name: 'Facebook', icon: 'F', url: '#facebook', color: 'text-blue-600' },
@@ -9,11 +12,19 @@ const socialLinks = [
 ];
 
 const Footer: React.FC = () => {
+  const pathname = usePathname();
+  const { theme } = useTheme();
+
+  // Hide footer on login page
+  if (pathname === '/login') {
+    return null;
+  }
+
   return (
-    <footer className="bg-gray-800 text-white">
+    <footer className={`${theme === 'dark' ? 'bg-gray-900' : 'bg-gray-800'} text-white`}>
       
       {/* Section Supérieure (Les 3 colonnes) */}
-      <div className="bg-gray-700 py-12">
+      <div className={`${theme === 'dark' ? 'bg-gray-800' : 'bg-gray-700'} py-12`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             
@@ -118,7 +129,7 @@ const Footer: React.FC = () => {
       </div>
 
       {/* Section Inférieure (Copyright et Liens Légaux) */}
-      <div className="bg-gray-900 py-4">
+      <div className={`${theme === 'dark' ? 'bg-black' : 'bg-gray-900'} py-4`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
           <p className="mb-2 md:mb-0">
             ImpacTune © 2025. All Rights Reserved.

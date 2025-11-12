@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-import Navbar from "@/src/components/Navbar";
-import Footer from "@/src/components/footer";
+import { ThemeProvider } from "@/src/contexts/ThemeContext";
+import { AuthProvider } from "@/src/contexts/AuthContext";
+import ConditionalLayout from "@/src/components/ConditionalLayout";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,13 +27,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar />
-        {children}
-        <Footer />
+        <ThemeProvider>
+          <AuthProvider>
+            <ConditionalLayout>
+              {children}
+            </ConditionalLayout>
+          </AuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -1,7 +1,14 @@
 "use client"
 import React from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@/src/contexts/AuthContext';
+import { useTheme } from '@/src/contexts/ThemeContext';
+import ProtectedRoute from '@/src/components/ProtectedRoute';
 
 const DashboardPage: React.FC = () => {
+  const { theme } = useTheme();
+  const { logout } = useAuth();
+  const router = useRouter();
   // Simulated data for dashboard statistics
   const stats = {
     totalArticles: 24,
@@ -36,45 +43,55 @@ const DashboardPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50/30">
-      {/* Header */}
-      <div className="bg-white border-b border-gray-200 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-4xl font-bold gradient-impactune-text mb-2">
-                Dashboard Staff
-              </h1>
-              <p className="text-gray-600">
-                Statistiques et métriques du Knowledge Hub ImpacTune
-              </p>
-            </div>
-            <div className="hidden md:flex items-center space-x-4">
-              <div className="text-right">
-                <p className="text-sm text-gray-500">Dernière mise à jour</p>
-                <p className="text-sm font-semibold text-gray-700">
-                  {new Date().toLocaleDateString('fr-FR', { 
-                    day: 'numeric', 
-                    month: 'long', 
-                    year: 'numeric',
-                    hour: '2-digit',
-                    minute: '2-digit'
-                  })}
+    <ProtectedRoute>
+      <div className={`min-h-screen ${theme === 'dark' ? 'bg-gray-900' : 'bg-gradient-to-br from-gray-50 to-blue-50/30'}`}>
+        {/* Header */}
+        <div className={`${theme === 'dark' ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} border-b shadow-sm`}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div className="flex items-center justify-between">
+              <div>
+                <h1 className={`text-4xl font-bold mb-2 ${theme === 'dark' ? 'text-white' : 'gradient-impactune-text'}`}>
+                  Dashboard Staff
+                </h1>
+                <p className={theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}>
+                  Statistiques et métriques du Knowledge Hub ImpacTune
                 </p>
+              </div>
+              <div className="hidden md:flex items-center space-x-4">
+                <button
+                  onClick={() => {
+                    logout();
+                    router.push('/');
+                  }}
+                  className="px-4 py-2 text-sm font-medium rounded-lg transition-colors bg-red-600 hover:bg-red-700 text-white"
+                >
+                  Logout
+                </button>
+                <div className="text-right">
+                  <p className={`text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>Dernière mise à jour</p>
+                  <p className={`text-sm font-semibold ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
+                    {new Date().toLocaleDateString('fr-FR', { 
+                      day: 'numeric', 
+                      month: 'long', 
+                      year: 'numeric',
+                      hour: '2-digit',
+                      minute: '2-digit'
+                    })}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Key Metrics Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-blue-500 hover:shadow-xl transition-shadow">
+          <div className={`${theme === 'dark' ? 'bg-gray-800 border-gray-700' : 'bg-white'} rounded-xl shadow-lg p-6 border-l-4 border-blue-500 hover:shadow-xl transition-shadow`}>
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600 mb-1">Articles Totaux</p>
-                <p className="text-3xl font-bold text-gray-900">{stats.totalArticles}</p>
+                <p className={`text-sm font-medium mb-1 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>Articles Totaux</p>
+                <p className={`text-3xl font-bold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>{stats.totalArticles}</p>
               </div>
               <div className="w-12 h-12 rounded-full gradient-impactune flex items-center justify-center">
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -83,16 +100,16 @@ const DashboardPage: React.FC = () => {
               </div>
             </div>
             <div className="mt-4 flex items-center">
-              <span className="text-sm text-green-600 font-medium">+{stats.monthlyGrowth}%</span>
-              <span className="text-sm text-gray-500 ml-2">ce mois</span>
+              <span className="text-sm text-green-500 font-medium">+{stats.monthlyGrowth}%</span>
+              <span className={`text-sm ml-2 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>ce mois</span>
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-indigo-500 hover:shadow-xl transition-shadow">
+          <div className={`${theme === 'dark' ? 'bg-gray-800 border-gray-700' : 'bg-white'} rounded-xl shadow-lg p-6 border-l-4 border-indigo-500 hover:shadow-xl transition-shadow`}>
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600 mb-1">Vues Totales</p>
-                <p className="text-3xl font-bold text-gray-900">{stats.totalViews.toLocaleString()}</p>
+                <p className={`text-sm font-medium mb-1 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>Vues Totales</p>
+                <p className={`text-3xl font-bold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>{stats.totalViews.toLocaleString()}</p>
               </div>
               <div className="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -102,16 +119,16 @@ const DashboardPage: React.FC = () => {
               </div>
             </div>
             <div className="mt-4 flex items-center">
-              <span className="text-sm text-green-600 font-medium">+12.3%</span>
-              <span className="text-sm text-gray-500 ml-2">vs mois dernier</span>
+              <span className="text-sm text-green-500 font-medium">+12.3%</span>
+              <span className={`text-sm ml-2 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>vs mois dernier</span>
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-purple-500 hover:shadow-xl transition-shadow">
+          <div className={`${theme === 'dark' ? 'bg-gray-800 border-gray-700' : 'bg-white'} rounded-xl shadow-lg p-6 border-l-4 border-purple-500 hover:shadow-xl transition-shadow`}>
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600 mb-1">Utilisateurs Actifs</p>
-                <p className="text-3xl font-bold text-gray-900">{stats.activeUsers}</p>
+                <p className={`text-sm font-medium mb-1 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>Utilisateurs Actifs</p>
+                <p className={`text-3xl font-bold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>{stats.activeUsers}</p>
               </div>
               <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -120,16 +137,16 @@ const DashboardPage: React.FC = () => {
               </div>
             </div>
             <div className="mt-4 flex items-center">
-              <span className="text-sm text-green-600 font-medium">+8.2%</span>
-              <span className="text-sm text-gray-500 ml-2">ce mois</span>
+              <span className="text-sm text-green-500 font-medium">+8.2%</span>
+              <span className={`text-sm ml-2 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>ce mois</span>
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-pink-500 hover:shadow-xl transition-shadow">
+          <div className={`${theme === 'dark' ? 'bg-gray-800 border-gray-700' : 'bg-white'} rounded-xl shadow-lg p-6 border-l-4 border-pink-500 hover:shadow-xl transition-shadow`}>
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600 mb-1">Taux d'Engagement</p>
-                <p className="text-3xl font-bold text-gray-900">{stats.engagementMetrics.returnVisitors}</p>
+                <p className={`text-sm font-medium mb-1 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>Taux d'Engagement</p>
+                <p className={`text-3xl font-bold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>{stats.engagementMetrics.returnVisitors}</p>
               </div>
               <div className="w-12 h-12 rounded-full bg-gradient-to-br from-pink-500 to-red-600 flex items-center justify-center">
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -138,15 +155,15 @@ const DashboardPage: React.FC = () => {
               </div>
             </div>
             <div className="mt-4 flex items-center">
-              <span className="text-sm text-gray-500">Visiteurs récurrents</span>
+              <span className={`text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>Visiteurs récurrents</span>
             </div>
           </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           {/* Categories Distribution */}
-          <div className="bg-white rounded-xl shadow-lg p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-6">Répartition par Catégories</h2>
+          <div className={`${theme === 'dark' ? 'bg-gray-800 border-gray-700' : 'bg-white'} rounded-xl shadow-lg p-6`}>
+            <h2 className={`text-xl font-bold mb-6 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>Répartition par Catégories</h2>
             <div className="space-y-4">
               {stats.popularCategories.map((category, index) => (
                 <div key={index} className="flex items-center justify-between">
@@ -154,16 +171,16 @@ const DashboardPage: React.FC = () => {
                     <div className="w-3 h-3 rounded-full" style={{
                       background: `linear-gradient(135deg, ${['#3b82f6', '#6366f1', '#8b5cf6', '#a855f7', '#ec4899'][index]} 0%, ${['#2563eb', '#4f46e5', '#7c3aed', '#9333ea', '#db2777'][index]} 100%)`
                     }}></div>
-                    <span className="text-sm font-medium text-gray-700">{category.name}</span>
+                    <span className={`text-sm font-medium ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>{category.name}</span>
                   </div>
                   <div className="flex items-center space-x-3 flex-1">
-                    <div className="flex-1 bg-gray-200 rounded-full h-2.5">
+                    <div className={`flex-1 rounded-full h-2.5 ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-200'}`}>
                       <div 
                         className="h-2.5 rounded-full gradient-impactune"
                         style={{ width: `${category.percentage}%` }}
                       ></div>
                     </div>
-                    <span className="text-sm font-semibold text-gray-900 w-12 text-right">{category.count}</span>
+                    <span className={`text-sm font-semibold w-12 text-right ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>{category.count}</span>
                   </div>
                 </div>
               ))}
@@ -171,24 +188,24 @@ const DashboardPage: React.FC = () => {
           </div>
 
           {/* Engagement Metrics */}
-          <div className="bg-white rounded-xl shadow-lg p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-6">Métriques d'Engagement</h2>
+          <div className={`${theme === 'dark' ? 'bg-gray-800 border-gray-700' : 'bg-white'} rounded-xl shadow-lg p-6`}>
+            <h2 className={`text-xl font-bold mb-6 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>Métriques d'Engagement</h2>
             <div className="grid grid-cols-2 gap-4">
-              <div className="p-4 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg">
-                <p className="text-sm text-gray-600 mb-1">Temps de lecture moyen</p>
-                <p className="text-2xl font-bold gradient-impactune-text">{stats.engagementMetrics.averageReadTime}</p>
+              <div className={`p-4 rounded-lg ${theme === 'dark' ? 'bg-gray-700' : 'bg-gradient-to-br from-blue-50 to-indigo-50'}`}>
+                <p className={`text-sm mb-1 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>Temps de lecture moyen</p>
+                <p className={`text-2xl font-bold ${theme === 'dark' ? 'text-white' : 'gradient-impactune-text'}`}>{stats.engagementMetrics.averageReadTime}</p>
               </div>
-              <div className="p-4 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-lg">
-                <p className="text-sm text-gray-600 mb-1">Taux de rebond</p>
-                <p className="text-2xl font-bold text-gray-900">{stats.engagementMetrics.bounceRate}</p>
+              <div className={`p-4 rounded-lg ${theme === 'dark' ? 'bg-gray-700' : 'bg-gradient-to-br from-indigo-50 to-purple-50'}`}>
+                <p className={`text-sm mb-1 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>Taux de rebond</p>
+                <p className={`text-2xl font-bold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>{stats.engagementMetrics.bounceRate}</p>
               </div>
-              <div className="p-4 bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg">
-                <p className="text-sm text-gray-600 mb-1">Requêtes de recherche</p>
-                <p className="text-2xl font-bold text-gray-900">{stats.engagementMetrics.searchQueries.toLocaleString()}</p>
+              <div className={`p-4 rounded-lg ${theme === 'dark' ? 'bg-gray-700' : 'bg-gradient-to-br from-purple-50 to-pink-50'}`}>
+                <p className={`text-sm mb-1 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>Requêtes de recherche</p>
+                <p className={`text-2xl font-bold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>{stats.engagementMetrics.searchQueries.toLocaleString()}</p>
               </div>
-              <div className="p-4 bg-gradient-to-br from-pink-50 to-red-50 rounded-lg">
-                <p className="text-sm text-gray-600 mb-1">Visiteurs récurrents</p>
-                <p className="text-2xl font-bold text-gray-900">{stats.engagementMetrics.returnVisitors}</p>
+              <div className={`p-4 rounded-lg ${theme === 'dark' ? 'bg-gray-700' : 'bg-gradient-to-br from-pink-50 to-red-50'}`}>
+                <p className={`text-sm mb-1 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>Visiteurs récurrents</p>
+                <p className={`text-2xl font-bold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>{stats.engagementMetrics.returnVisitors}</p>
               </div>
             </div>
           </div>
@@ -196,41 +213,41 @@ const DashboardPage: React.FC = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Monthly Trends */}
-          <div className="bg-white rounded-xl shadow-lg p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-6">Tendances Mensuelles</h2>
+          <div className={`${theme === 'dark' ? 'bg-gray-800 border-gray-700' : 'bg-white'} rounded-xl shadow-lg p-6`}>
+            <h2 className={`text-xl font-bold mb-6 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>Tendances Mensuelles</h2>
             <div className="space-y-4">
               {stats.monthlyTrends.map((trend, index) => (
                 <div key={index} className="flex items-center justify-between">
                   <div className="flex items-center space-x-4 flex-1">
-                    <span className="text-sm font-medium text-gray-700 w-12">{trend.month}</span>
-                    <div className="flex-1 bg-gray-200 rounded-full h-4 relative overflow-hidden">
+                    <span className={`text-sm font-medium w-12 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>{trend.month}</span>
+                    <div className={`flex-1 rounded-full h-4 relative overflow-hidden ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-200'}`}>
                       <div 
                         className="h-4 rounded-full gradient-impactune transition-all duration-500"
                         style={{ width: `${(trend.views / stats.monthlyTrends[stats.monthlyTrends.length - 1].views) * 100}%` }}
                       ></div>
                     </div>
                   </div>
-                  <span className="text-sm font-semibold text-gray-900 w-20 text-right">{trend.views.toLocaleString()}</span>
+                  <span className={`text-sm font-semibold w-20 text-right ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>{trend.views.toLocaleString()}</span>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Recent Activity */}
-          <div className="bg-white rounded-xl shadow-lg p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-6">Activité Récente</h2>
+          <div className={`${theme === 'dark' ? 'bg-gray-800 border-gray-700' : 'bg-white'} rounded-xl shadow-lg p-6`}>
+            <h2 className={`text-xl font-bold mb-6 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>Activité Récente</h2>
             <div className="space-y-4">
               {stats.recentActivity.map((activity, index) => (
-                <div key={index} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                <div key={index} className={`flex items-center justify-between p-4 rounded-lg transition-colors ${theme === 'dark' ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-50 hover:bg-gray-100'}`}>
                   <div className="flex-1">
-                    <p className="text-sm font-semibold text-gray-900 mb-1">{activity.article}</p>
-                    <p className="text-xs text-gray-500">
+                    <p className={`text-sm font-semibold mb-1 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>{activity.article}</p>
+                    <p className={`text-xs ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>
                       {new Date(activity.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' })}
                     </p>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm font-bold gradient-impactune-text">{activity.views.toLocaleString()}</p>
-                    <p className="text-xs text-gray-500">vues</p>
+                    <p className={`text-sm font-bold ${theme === 'dark' ? 'text-blue-400' : 'gradient-impactune-text'}`}>{activity.views.toLocaleString()}</p>
+                    <p className={`text-xs ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>vues</p>
                   </div>
                 </div>
               ))}
@@ -238,7 +255,8 @@ const DashboardPage: React.FC = () => {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </ProtectedRoute>
   );
 };
 

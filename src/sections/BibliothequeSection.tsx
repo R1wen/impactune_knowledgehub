@@ -1,21 +1,25 @@
+"use client"
 import DocumentCard from '../components/ArticleCard';
 import Link from 'next/link';
 import { documentsData, DocumentData } from '@/app/library/documentData';
+import { useTheme } from '@/src/contexts/ThemeContext';
 
 
 
 const BibliothequeSection: React.FC = () => {
+  const { theme } = useTheme();
+  
   return (
-    <section className="py-16 sm:py-24 bg-gradient-to-br from-white via-blue-50/30 to-purple-50/30">
+    <section className={`py-16 sm:py-24 ${theme === 'dark' ? 'bg-gray-900' : 'bg-gradient-to-br from-white via-blue-50/30 to-purple-50/30'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         
         {/* Titre de la Section */}
-        <h2 className="text-4xl md:text-5xl font-bold gradient-impactune-text mb-4">
+        <h2 className={`text-4xl md:text-5xl font-bold mb-4 ${theme === 'dark' ? 'text-white' : 'gradient-impactune-text'}`}>
           Bibliothèque
         </h2>
         
         {/* Description de la Section */}
-        <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-12">
+        <p className={`text-lg md:text-xl max-w-3xl mx-auto mb-12 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
           Plongez dans une vaste collection de publications, de données, d'actualités et de ressources multimédias. Vous y trouverez des tutoriels, des guides pratiques, des analyses statistiques et bien plus encore.
         </p>
 

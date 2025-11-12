@@ -27,6 +27,17 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark body {
+  background: #111827;
+  color: #f9fafb;
+}
+
+.light body {
+  background: #ffffff;
+  color: #171717;
 }
 
 /* Gradient utilities for ImpacTune branding */

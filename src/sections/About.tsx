@@ -1,5 +1,7 @@
+"use client"
 import Link from 'next/link';
 import Image from 'next/image';
+import { useTheme } from '@/src/contexts/ThemeContext';
 
 interface AboutSectionProps {
   imagePath?: string;
@@ -8,6 +10,7 @@ interface AboutSectionProps {
 const AboutSection: React.FC<AboutSectionProps> = ({ 
     imagePath = '/images/background_about.jpg' 
 }) => {
+  const { theme } = useTheme();
 
   // --- 1. Section Principale (Image de fond avec Texte) ---
   const HeroContent = (
@@ -38,18 +41,20 @@ const AboutSection: React.FC<AboutSectionProps> = ({
 
   // --- 2. Section d'Introduction (Texte et Bouton) ---
   const IntroContent = (
-    <div className="relative bg-white pt-16 pb-20 overflow-hidden">
+    <div className={`relative ${theme === 'dark' ? 'bg-gray-900' : 'bg-white'} pt-16 pb-20 overflow-hidden`}>
       <div 
-        className="absolute inset-0 z-0 opacity-20" 
+        className={`absolute inset-0 z-0 opacity-20`}
         style={{ 
-          backgroundImage: 'repeating-linear-gradient(-45deg, #f3f4f6, #f3f4f6 10px, transparent 10px, transparent 20px)',
+          backgroundImage: theme === 'dark' 
+            ? 'repeating-linear-gradient(-45deg, #374151, #374151 10px, transparent 10px, transparent 20px)'
+            : 'repeating-linear-gradient(-45deg, #f3f4f6, #f3f4f6 10px, transparent 10px, transparent 20px)',
           backgroundSize: '20px 20px',
         }}
       />
       
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         
-        <p className="text-gray-700 text-lg leading-relaxed mb-8">
+        <p className={`${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'} text-lg leading-relaxed mb-8`}>
           ImpacTune offre une gamme de fonctionnalités innovantes et une multitude de solutions de diffusion, que nous avons conçues et optimisées pour vous. Que vous soyez un créateur de contenu, un formateur, une organisation cherchant de la visibilité, un communicateur ou toute personne souhaitant rendre sa diffusion interactive, vous pouvez utiliser facilement ImpacTune.
         </p>
 
