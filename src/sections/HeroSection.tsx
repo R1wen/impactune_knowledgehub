@@ -6,6 +6,14 @@ import { useTheme } from '@/src/contexts/ThemeContext';
 const HeroSection = () => {
   const { theme } = useTheme();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [particles, setParticles] = useState<Array<{
+    left: string;
+    top: string;
+    width: string;
+    height: string;
+    animationDelay: string;
+    animationDuration: string;
+  }>>([]);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -13,6 +21,20 @@ const HeroSection = () => {
     };
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  useEffect(() => {
+    // Generate particle data only on the client to avoid hydration mismatch
+    setParticles(
+      Array.from({ length: 20 }, () => ({
+        left: `${Math.random() * 100}%`,
+        top: `${Math.random() * 100}%`,
+        width: `${Math.random() * 10 + 5}px`,
+        height: `${Math.random() * 10 + 5}px`,
+        animationDelay: `${Math.random() * 5}s`,
+        animationDuration: `${Math.random() * 10 + 10}s`
+      }))
+    );
   }, []);
 
   return (
@@ -28,18 +50,18 @@ const HeroSection = () => {
       
       {/* Floating Particles */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(20)].map((_, i) => (
+        {particles.map((particle, i) => (
           <div
             key={i}
             className="absolute rounded-full opacity-20 animate-float"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              width: `${Math.random() * 10 + 5}px`,
-              height: `${Math.random() * 10 + 5}px`,
+              left: particle.left,
+              top: particle.top,
+              width: particle.width,
+              height: particle.height,
               background: `linear-gradient(135deg, #3b82f6, #8b5cf6)`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${Math.random() * 10 + 10}s`
+              animationDelay: particle.animationDelay,
+              animationDuration: particle.animationDuration
             }}
           />
         ))}
